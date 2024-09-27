@@ -37,12 +37,8 @@ const pickWordAndCategory = useCallback(() => {
   const categories = Object.keys(words)
   const category = categories[Math.floor(Math.random() * Object.keys(categories).length)]
 
-  console.log(category)
-
   // pick a random word
   const word = words[category][Math.floor(Math.random() * words[category].length)]
-
-  console.log(word)
 
   return {word, category}
 }, [words])
@@ -60,9 +56,6 @@ const startGame = useCallback(() => {
   let wordLetters = word.split('')
 
   wordLetters = wordLetters.map((l) => l.toLowerCase())
-
-  console.log(word, category)
-  console.log(wordLetters)
 
   // fill states
   setPickedWord(word)
