@@ -12,6 +12,8 @@ import StartScreen from './components/StartScreen'
 import Game from './components/Game'
 import GameOver from './components/GameOver'
 
+
+
 const stages = [
   {id:1, name: 'start'},
   {id:2, name: 'game'},
@@ -30,7 +32,7 @@ const [letters, setLetters] = useState([])
 
 const [guessedLetters, setGuessedLetters] = useState([])
 const [wrongLetters, setWrongLetters] = useState([])
-const [guesses, setGuesses] = useState(guessesQty)
+const [guesses, setGuesses] = useState(3)
 const [score, setScore] = useState(0)
 const pickWordAndCategory = useCallback(() => {
   // pick a random category
@@ -115,6 +117,9 @@ const verifyLetter = (letter) =>{
 
     const uniqueLetters = [... new Set(letters)]
 
+    // Verifica se existem letras a serem adivinhadas
+    if (uniqueLetters.length === 0) return;
+
     // win condition
     if(guessedLetters.length === uniqueLetters.length){
       // add score
@@ -151,7 +156,9 @@ const retry = () =>{
       score={score}
       />}
       {gameStage === 'end' && <GameOver retry={retry} score={score} />}
+      
     </div>
+    
   )
 }
 
